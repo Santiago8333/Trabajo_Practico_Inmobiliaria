@@ -52,7 +52,13 @@ public class MainActivity extends AppCompatActivity {
         // Drawer
         assert binding.navView != null;
         NavigationUI.setupWithNavController(binding.navView, navController);
+        if (getIntent().hasExtra("DESTINO")) {
+            String destino = getIntent().getStringExtra("DESTINO");
+            if ("transform".equals(destino)) {
 
+                navController.navigate(R.id.nav_transform);
+            }
+        }
     }
 
     @Override

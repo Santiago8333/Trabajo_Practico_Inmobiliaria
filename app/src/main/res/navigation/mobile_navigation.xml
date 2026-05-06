@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_transform">
+    app:startDestination="@+id/loginActivity">
 
     <fragment
         android:id="@+id/nav_transform"
@@ -28,4 +28,9 @@
         android:name="com.in.trabajo_practico_inmobiliaria.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>
