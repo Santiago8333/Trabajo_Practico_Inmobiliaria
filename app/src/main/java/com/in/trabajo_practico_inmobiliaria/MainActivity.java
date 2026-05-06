@@ -50,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         // Drawer
-        assert binding.navView != null;
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        if (binding.navView != null) {
+            NavigationUI.setupWithNavController(binding.navView, navController);
+        }
+
         if (getIntent().hasExtra("DESTINO")) {
             String destino = getIntent().getStringExtra("DESTINO");
             if ("transform".equals(destino)) {
