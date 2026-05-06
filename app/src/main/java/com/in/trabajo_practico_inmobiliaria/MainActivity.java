@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_transform
-
+                R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow, R.id.nav_settings
         )
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
@@ -54,13 +53,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
 
-        if (getIntent().hasExtra("DESTINO")) {
-            String destino = getIntent().getStringExtra("DESTINO");
-            if ("transform".equals(destino)) {
 
-                navController.navigate(R.id.nav_transform);
-            }
-        }
     }
 
     @Override
