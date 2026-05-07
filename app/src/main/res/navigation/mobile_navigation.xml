@@ -3,34 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_transform">
+    app:startDestination="@id/nav_inicio">
 
-    <fragment
-        android:id="@+id/nav_transform"
-        android:name="com.in.trabajo_practico_inmobiliaria.ui.transform.TransformFragment"
-        android:label="@string/menu_transform"
-        tools:layout="@layout/fragment_transform" />
 
-    <fragment
-        android:id="@+id/nav_reflow"
-        android:name="com.in.trabajo_practico_inmobiliaria.ui.reflow.ReflowFragment"
-        android:label="@string/menu_reflow"
-        tools:layout="@layout/fragment_reflow" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.in.trabajo_practico_inmobiliaria.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.in.trabajo_practico_inmobiliaria.ui.settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
     <activity
         android:id="@+id/loginActivity"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.login.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.inicio.InicioFragment"
+        android:label="@string/Inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.ContratosFragment"
+        android:label="fragment_contratos"
+        tools:layout="@layout/fragment_contratos" />
+    <fragment
+        android:id="@+id/nav_inmuebles"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.InmueblesFragment"
+        android:label="@string/Inmuebles"
+        tools:layout="@layout/fragment_inmuebles" />
+    <fragment
+        android:id="@+id/nav_inquilinos"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.inquilinos.InquilinosFragment"
+        android:label="@string/Inquilinos"
+        tools:layout="@layout/fragment_inquilinos" />
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.perfil.PerfilFragment"
+        android:label="@string/Perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.logout.LogoutFragment"
+        android:label="@string/Logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

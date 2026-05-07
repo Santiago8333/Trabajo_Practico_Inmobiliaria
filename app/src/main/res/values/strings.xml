@@ -22,4 +22,11 @@
     <string name="image_view_item_transform_content_description">Represents an image view in the
         item
     </string>
+    <string name="Inicio">Inicio\n\n</string>
+    <string name="Perfil">Perfil\n</string>
+    <string name="Inm">Inmuebles</string>
+    <string name="Inmuebles">Inmuebles</string>
+    <string name="Inquilinos">Inquilinos</string>
+    <string name="Contratos">Contratos</string>
+    <string name="Logout">Logout\n</string>
 </resources>
