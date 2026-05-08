@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.in.trabajo_practico_inmobiliaria.MainActivity;
@@ -38,6 +39,12 @@ private LoginViewModel mv;
                 finish();
                 */
 
+            }
+        });
+        mv.getMensaje().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                b.tvmensaje.setText(s);
             }
         });
     }

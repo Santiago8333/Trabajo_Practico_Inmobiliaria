@@ -17,8 +17,8 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public class ApiClient {
-    private static final String BASE_URL = "https://capacitacion.alwaysdata.net/";
-
+    private static final String BASE_URL = "https://capacitacion.alwaysdata.net";
+//https://capacitacion.alwaysdata.net
 
     public static MiServicioInmobiliaria getServicio() {
         Gson gson = new GsonBuilder().setLenient().create();
@@ -33,14 +33,14 @@ public class ApiClient {
     }
     public interface MiServicioInmobiliaria{
         @FormUrlEncoded
-        @POST("api/Propietarios/login")
+        @POST("/api/Propietarios/login")
         Call<String> loginForm(@Field("Usuario") String usuario, @Field("Clave") String clave);
 
         //llama propietario
-        @GET("api/Propietarios/")
+        @GET("/api/Propietarios/")
         Call<Propietario> getPropietario(@Header("Authorization") String token);
 
-        //lama inmueble
+        //llama inmueble
 
 
     }

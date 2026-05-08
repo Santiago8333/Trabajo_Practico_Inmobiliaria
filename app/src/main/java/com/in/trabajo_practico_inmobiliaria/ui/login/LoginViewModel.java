@@ -51,6 +51,7 @@ public class LoginViewModel extends AndroidViewModel {
                         Log.d("Error", response.message());// mensaje de erro que debvuelve
                         Log.d("Error", response.code()+"");// muestra codigo de error
                         Log.d("Error", response.errorBody().toString()+"");//trae mensaje y codigo de error
+                        mensajem.setValue("Error: "+response.message());
                     }
 
                 }
@@ -58,6 +59,7 @@ public class LoginViewModel extends AndroidViewModel {
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
                     Log.d("mensaje",t.getMessage());
+                    mensajem.setValue("Error: "+t.getMessage());
                 }
             });
         }
