@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.in.trabajo_practico_inmobiliaria.R;
+import com.in.trabajo_practico_inmobiliaria.databinding.FragmentPerfilBinding;
 
 public class PerfilFragment extends Fragment {
 
     private PerfilViewModel mViewModel;
+    private FragmentPerfilBinding b;
 
     public static PerfilFragment newInstance() {
         return new PerfilFragment();
@@ -25,7 +27,8 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
+        b = FragmentPerfilBinding.inflate(inflater,container,false);
+        return b.getRoot();
     }
 
     @Override
@@ -33,6 +36,15 @@ public class PerfilFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
         // TODO: Use the ViewModel
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
+
+
+
+
     }
 
 }
