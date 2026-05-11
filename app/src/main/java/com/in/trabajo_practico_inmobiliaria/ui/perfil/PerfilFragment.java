@@ -47,14 +47,30 @@ public class PerfilFragment extends Fragment {
         mViewModel.getPropietarioM().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @Override
             public void onChanged(Propietario propietario) {
-                b.edCodigo.setText(propietario.getIdPropietario());
+                b.edCodigo.setText(String.valueOf(propietario.getIdPropietario()));
                 b.edDni.setText(propietario.getDni());
-
+                b.edApellido.setText(propietario.getApellido());
+                b.edNombre.setText(propietario.getNombre());
+                b.edEmail.setText(propietario.getEmail());
+                b.edTelefono.setText(propietario.getTelefono());
+                b.edContrasena.setText(propietario.getClave());
 
             }
         });
 
-
+        //encuchar evento de boton
+        b.btBoton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewModel.CambiarEstadoBoton();
+            }
+        });
+        mViewModel.getBotonMensajeM().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                b.btBoton.setText(s);
+            }
+        });
 
     }
 

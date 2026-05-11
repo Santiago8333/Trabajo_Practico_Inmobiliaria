@@ -18,6 +18,9 @@ import com.in.trabajo_practico_inmobiliaria.request.ApiClient;
 public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Propietario> propietarioM;
     private MutableLiveData<String> mensajeError;
+    private MutableLiveData<Boolean> botonM;
+    private MutableLiveData<String> botonMensajeM;
+
     public PerfilViewModel(@NonNull Application application) {
         super(application);
     }
@@ -36,6 +39,20 @@ public class PerfilViewModel extends AndroidViewModel {
         return mensajeError;
     }
 
+    public MutableLiveData<Boolean> getBoton() {
+        if(botonM == null){
+            botonM = new MutableLiveData<>();
+        }
+        return botonM;
+    }
+
+    public MutableLiveData<String> getBotonMensajeM() {
+        if(botonMensajeM == null){
+            botonMensajeM = new MutableLiveData<>();
+        }
+        return botonMensajeM;
+    }
+
     public void cargarPerfil(){
         String token = ApiClient.leerToken(getApplication());
         ApiClient.MiServicioInmobiliaria servicio = ApiClient.getServicio();
@@ -48,12 +65,14 @@ public class PerfilViewModel extends AndroidViewModel {
                     propietarioM.setValue(miPropietario);
                 }else{
                     Log.e("API_ERROR", "Error en la respuesta: " + response.code());
+                    mensajeError.setValue("API_ERROR Error en la respuesta: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
                 Log.e("API_ERROR", "Falla de conexión: " + t.getMessage());
+                mensajeError.setValue("API_ERROR Error en la respuesta: " + t.getMessage());
             }
         });
 
@@ -61,6 +80,17 @@ public class PerfilViewModel extends AndroidViewModel {
 
     }
 
+    public void CambiarEstadoBoton(){
+        // Usamos getBoton() y getBotonMensajeM() para asegurar que no sean null
+        Boolean estadoActual = getBoton().getValue();
 
+        if (estadoActual != null && estadoActual == true) {
+            getBoton().setValue(false);
+            getBotonMensajeM().setValue("Editar");
+        } else {
+            getBoton().setValue(true);
+            getBotonMensajeM().setValue("Guardar");
+        }
+    }
     // TODO: Implement the ViewModel
 }
