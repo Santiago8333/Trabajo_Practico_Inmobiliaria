@@ -48,10 +48,28 @@ public class LoginViewModel extends AndroidViewModel {
                         intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }else{
+                        /*
                         Log.d("Error", response.message());// mensaje de erro que debvuelve
                         Log.d("Error", response.code()+"");// muestra codigo de error
                         Log.d("Error", response.errorBody().toString()+"");//trae mensaje y codigo de error
                         mensajem.setValue("Error: "+response.message());
+                        */
+                        // Muestra el código de error numérico (ej. 400)
+
+                        Log.d("Error", "Código: " + response.code());
+
+                        try {
+                            // Extrae el mensaje REAL del servidor usando .string() (en minúscula y con paréntesis vacíos)
+                            String errorReal = response.errorBody().string();
+                            Log.d("Error", "Mensaje del Servidor: " + errorReal);
+
+                            // Actualiza tu MutableLiveData con el mensaje real para que el usuario lo vea
+                            mensajem.setValue("Error: " + errorReal);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            mensajem.setValue("Error desconocido al intentar iniciar sesión");
+                        }
                     }
 
                 }
