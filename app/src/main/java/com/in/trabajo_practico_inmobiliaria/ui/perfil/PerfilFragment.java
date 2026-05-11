@@ -1,5 +1,6 @@
 package com.in.trabajo_practico_inmobiliaria.ui.perfil;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.in.trabajo_practico_inmobiliaria.R;
 import com.in.trabajo_practico_inmobiliaria.databinding.FragmentPerfilBinding;
+import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
 
 public class PerfilFragment extends Fragment {
 
@@ -41,7 +43,16 @@ public class PerfilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
+        mViewModel.cargarPerfil();
+        mViewModel.getPropietarioM().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
+            @Override
+            public void onChanged(Propietario propietario) {
+                b.edCodigo.setText(propietario.getIdPropietario());
+                b.edDni.setText(propietario.getDni());
 
+
+            }
+        });
 
 
 
