@@ -68,9 +68,32 @@ public class PerfilFragment extends Fragment {
         mViewModel.getBotonMensajeM().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
+
                 b.btBoton.setText(s);
+
             }
         });
+        //cambiar el estado de los editext
+        mViewModel.getBoton().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+
+                if (aBoolean != null) {
+                    b.edCodigo.setEnabled(aBoolean);
+                    b.edApellido.setEnabled(aBoolean);
+                    b.edNombre.setEnabled(aBoolean);
+                    b.edEmail.setEnabled(aBoolean);
+                    b.edDni.setEnabled(aBoolean);
+                    b.edTelefono.setEnabled(aBoolean);
+                    b.edContrasena.setEnabled(aBoolean);
+                }
+
+
+            }
+        });
+
+
+
 
     }
 
