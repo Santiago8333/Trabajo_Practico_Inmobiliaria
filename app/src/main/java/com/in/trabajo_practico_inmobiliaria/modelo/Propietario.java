@@ -24,6 +24,14 @@ public class Propietario implements Serializable {
         this.email = email;
     }
 
+    public Propietario(String nombre, String apellido, String telefono, String email, String dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.email = email;
+        this.dni = dni;
+    }
+
     public int getIdPropietario() {
         return idPropietario;
     }

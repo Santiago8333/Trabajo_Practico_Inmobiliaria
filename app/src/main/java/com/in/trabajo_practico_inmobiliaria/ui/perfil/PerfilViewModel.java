@@ -15,9 +15,13 @@ import retrofit2.Response;
 import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
 import com.in.trabajo_practico_inmobiliaria.request.ApiClient;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+
 public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Propietario> propietarioM;
-    private MutableLiveData<String> mensajeError;
+    private MutableLiveData<String> mensajePerfilM;
+    private MutableLiveData<String> mensajeClaveM;
     private MutableLiveData<Boolean> botonM;
     private MutableLiveData<String> botonMensajeM;
 
@@ -26,60 +30,66 @@ public class PerfilViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<Propietario> getPropietarioM() {
-        if(propietarioM == null){
+        if (propietarioM == null) {
             propietarioM = new MutableLiveData<>();
         }
         return propietarioM;
     }
 
-    public MutableLiveData<String> getMensajeError() {
-        if(mensajeError == null){
-            mensajeError = new MutableLiveData<>();
+    public MutableLiveData<String> getMensajePerfilM() {
+        if (mensajePerfilM == null) {
+            mensajePerfilM = new MutableLiveData<>();
         }
-        return mensajeError;
+        return mensajePerfilM;
+    }
+
+    public MutableLiveData<String> getMensajeClaveM() {
+        if (mensajeClaveM == null) {
+            mensajeClaveM = new MutableLiveData<>();
+        }
+        return mensajeClaveM;
     }
 
     public MutableLiveData<Boolean> getBoton() {
-        if(botonM == null){
+        if (botonM == null) {
             botonM = new MutableLiveData<>();
         }
         return botonM;
     }
 
     public MutableLiveData<String> getBotonMensajeM() {
-        if(botonMensajeM == null){
+        if (botonMensajeM == null) {
             botonMensajeM = new MutableLiveData<>();
         }
         return botonMensajeM;
     }
 
-    public void cargarPerfil(){
+    public void cargarPerfil() {
         String token = ApiClient.leerToken(getApplication());
         ApiClient.MiServicioInmobiliaria servicio = ApiClient.getServicio();
         Call<Propietario> call = servicio.obtenerPropietario(token);
         call.enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Propietario miPropietario = response.body();
                     propietarioM.setValue(miPropietario);
-                }else{
+                } else {
                     Log.e("API_ERROR", "Error en la respuesta: " + response.code());
-                    mensajeError.setValue("API_ERROR Error en la respuesta: " + response.code());
+                    mensajePerfilM.setValue("API_ERROR Error en la respuesta: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
                 Log.e("API_ERROR", "Falla de conexión: " + t.getMessage());
-                mensajeError.setValue("API_ERROR Error en la respuesta: " + t.getMessage());
+                mensajePerfilM.setValue("API_ERROR Error en la respuesta: " + t.getMessage());
             }
         });
 
 
-
     }
-
+/*
     public void CambiarEstadoBoton(){
         // Usamos getBoton() y getBotonMensajeM() para asegurar que no sean null
         Boolean estadoActual = getBoton().getValue();
@@ -92,5 +102,130 @@ public class PerfilViewModel extends AndroidViewModel {
             getBotonMensajeM().setValue("Guardar");
         }
     }
-    // TODO: Implement the ViewModel
-}
+
+ */
+
+
+    public void procesarAccionBoton(String dni, String nombre, String apellido, String email, String telefono) {
+        Boolean estadoActual = getBoton().getValue();
+
+        if (estadoActual != null && estadoActual == true) {
+
+            Propietario propietarioEditado = new Propietario();
+
+            propietarioEditado.setDni(dni);
+            propietarioEditado.setNombre(nombre);
+            propietarioEditado.setApellido(apellido);
+            propietarioEditado.setEmail(email);
+            propietarioEditado.setTelefono(telefono);
+
+            //Log.d("pro",propietarioEditado.getDni());
+
+            guardarPerfil(propietarioEditado);
+            //Log.d("p",propietarioEditado.getDni());
+
+
+            getBoton().setValue(false);
+            getBotonMensajeM().setValue("Editar");
+
+        } else {
+            getBoton().setValue(true);
+            getBotonMensajeM().setValue("Guardar");
+        }
+    }
+
+    //actualizamos perfil
+    private void guardarPerfil(Propietario propietarioEditado) {
+        if (propietarioEditado.getDni().isEmpty() || propietarioEditado.getNombre().isEmpty()
+                || propietarioEditado.getApellido().isEmpty()
+                || propietarioEditado.getEmail().isEmpty()
+                || propietarioEditado.getTelefono().isEmpty()) {
+
+            getMensajePerfilM().setValue("Por favor, complete todos los campos");
+
+        } else {
+
+            String token = ApiClient.leerToken(getApplication());
+            ApiClient.MiServicioInmobiliaria sv = ApiClient.getServicio();
+            Call<Propietario> call = sv.putPropietario(token, propietarioEditado);
+            call.enqueue(new Callback<Propietario>() {
+                @Override
+                public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                    if (response.isSuccessful()) {
+                        Propietario nuevo = response.body();
+                        propietarioM.setValue(nuevo);
+                        mensajePerfilM.setValue("Datos Cargados");
+                    } else {
+                        try {
+                            String errorReal = response.errorBody().string();
+                            Log.d("error", "codigo: " + response.code());
+                            Log.d("error", "mennsaje: " + response.message());
+                            Log.d("error", "body: " + response.errorBody().toString());
+                            mensajePerfilM.setValue("Error: " + errorReal);
+                        }catch(Exception e){
+                            e.printStackTrace();
+                            getMensajeClaveM().setValue("Error al leer la respuesta del servidor");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Propietario> call, Throwable t) {
+                    Log.d("error", "mennsaje: " + t.getMessage());
+                    mensajePerfilM.setValue("Error: " + t.getMessage());
+
+                }
+            });
+
+
+        }
+
+    }
+
+
+    public void cambiarClave(String actual, String nueva) {
+        if (actual.isEmpty() || nueva.isEmpty()) {
+            getMensajeClaveM().setValue("Por favor, complete todos los campos");
+        } else {
+
+            String token = ApiClient.leerToken(getApplication());
+            ApiClient.MiServicioInmobiliaria sv = ApiClient.getServicio();
+            Call<Void> call = sv.cambiarContrasenia(token, actual, nueva);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        mensajeClaveM.setValue("Clave Modificada");
+                    } else {
+                        try {
+                            String errorReal = response.errorBody().string();
+                            Log.d("error", "codigo: " + response.code());
+                            Log.d("error", "mennsaje: " + response.message());
+                            Log.d("error", "body: " + errorReal);
+                            mensajeClaveM.setValue("Error: " + errorReal);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            getMensajeClaveM().setValue("Error al leer la respuesta del servidor");
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.d("error", "mennsaje: " + t.getMessage());
+                    mensajeClaveM.setValue("Error: " + t.getMessage());
+                }
+            });
+
+        }
+    }
+
+
+
+    }
+
+
+
+
+

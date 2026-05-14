@@ -10,11 +10,13 @@ import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class ApiClient {
     private static final String BASE_URL = "https://capacitacion.alwaysdata.net";
@@ -40,6 +42,20 @@ public class ApiClient {
         //llama propietario
         @GET("/api/Propietarios/")
         Call<Propietario> obtenerPropietario(@Header("Authorization") String token);
+
+        //actualizar propietario
+        @PUT("api/Propietarios/actualizar")
+        Call<Propietario> putPropietario(@Header("Authorization") String token, @Body Propietario propietario);
+
+        //actualizar clave
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
+        Call<Void> cambiarContrasenia(@Header("Authorization") String token,
+                                      @Field("currentPassword") String actual,
+                                      @Field("newPassword")  String nueva);
+
+
+
 
         //llama inmueble
 

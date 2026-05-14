@@ -53,7 +53,9 @@ public class PerfilFragment extends Fragment {
                 b.edNombre.setText(propietario.getNombre());
                 b.edEmail.setText(propietario.getEmail());
                 b.edTelefono.setText(propietario.getTelefono());
-                b.edContrasena.setText(propietario.getClave());
+                //activar boton editar
+                b.btBoton.setEnabled(true);
+                b.btCambiarPass.setEnabled(true);
 
             }
         });
@@ -62,7 +64,15 @@ public class PerfilFragment extends Fragment {
         b.btBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mViewModel.CambiarEstadoBoton();
+
+                mViewModel.procesarAccionBoton(
+                        b.edDni.getText().toString(),
+                        b.edNombre.getText().toString(),
+                        b.edApellido.getText().toString(),
+                        b.edEmail.getText().toString(),
+                        b.edTelefono.getText().toString()
+                );
+
             }
         });
         mViewModel.getBotonMensajeM().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -78,19 +88,46 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
 
-                if (aBoolean != null) {
                     b.edCodigo.setEnabled(aBoolean);
                     b.edApellido.setEnabled(aBoolean);
                     b.edNombre.setEnabled(aBoolean);
                     b.edEmail.setEnabled(aBoolean);
                     b.edDni.setEnabled(aBoolean);
                     b.edTelefono.setEnabled(aBoolean);
-                    b.edContrasena.setEnabled(aBoolean);
-                }
 
 
             }
         });
+
+        //mostrar mensajes del perfil
+        mViewModel.getMensajePerfilM().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                b.tvMensajePerfil.setText(s);
+            }
+        });
+
+        //mostrar mensajes de clave
+        mViewModel.getMensajeClaveM().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                b.tvMensajeClave.setText(s);
+            }
+        });
+
+        //cambiar clave
+        b.btCambiarPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mViewModel.cambiarClave(b.edPassActual.getText().toString(),b.edPassNueva.getText().toString());
+
+            }
+        });
+
+
+
+
 
 
 

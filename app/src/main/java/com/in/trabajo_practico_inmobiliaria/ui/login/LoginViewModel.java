@@ -32,7 +32,15 @@ public class LoginViewModel extends AndroidViewModel {
     public void recuperarDatos(String email,String clave){
         if(email.isEmpty() || clave.isEmpty()){
             mensajem.setValue("Por favor, complete todos los campos");
-
+/*
+//saltar el login
+            String tokenHardcodeado = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibHVpc3Byb2Zlc3NvckBnbWFpbC5jb20iLCJGdWxsTmFtZSI6Ikx1aXMgUGFibGl0byBNZXJjYWRvIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUHJvcGlldGFyaW8iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjMiLCJleHAiOjE3NzgyNjc3MTEsImlzcyI6ImlubW9iaWxpYXJpYVVMUCIsImF1ZCI6Im1vYmlsZUFQUCJ9.o-DGwg_-fIcxEGqLtN2oqnfPcSfqBgUfDXzDtIiqBi0";
+            ApiClient.crearToken(context, tokenHardcodeado);
+            Log.d("Token", "Saltando login. Token usado: " + tokenHardcodeado);
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+ */
         }else {
             //Implementar la interface
             ApiClient.MiServicioInmobiliaria servicioInmobiliaria = ApiClient.getServicio();
