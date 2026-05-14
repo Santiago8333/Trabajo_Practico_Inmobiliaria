@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.in.trabajo_practico_inmobiliaria.R;
+import com.in.trabajo_practico_inmobiliaria.databinding.FragmentInmueblesBinding;
 
 public class InmueblesFragment extends Fragment {
 
     private InmueblesViewModel mViewModel;
+    private FragmentInmueblesBinding b;
 
     public static InmueblesFragment newInstance() {
         return new InmueblesFragment();
@@ -25,14 +27,15 @@ public class InmueblesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_inmuebles, container, false);
+        b = FragmentInmueblesBinding.inflate(getLayoutInflater());
+
+
+
+
+
+        return b.getRoot();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InmueblesViewModel.class);
-        // TODO: Use the ViewModel
-    }
+
 
 }
