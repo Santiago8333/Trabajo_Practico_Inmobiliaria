@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.in.trabajo_practico_inmobiliaria.modelo.Inmueble;
 import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -19,7 +22,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public class ApiClient {
-    private static final String BASE_URL = "https://capacitacion.alwaysdata.net";
+    public static final String BASE_URL = "https://capacitacion.alwaysdata.net";
 //https://capacitacion.alwaysdata.net
 
     public static MiServicioInmobiliaria getServicio() {
@@ -53,11 +56,21 @@ public class ApiClient {
         Call<Void> cambiarContrasenia(@Header("Authorization") String token,
                                       @Field("currentPassword") String actual,
                                       @Field("newPassword")  String nueva);
+        //resetear contraseña
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
+        Call<String> resetearContrasenia(@Header("Authorization") String token,
+                                      @Field("email") String email);
+
 
 
 
 
         //llama inmueble
+        @GET("api/Inmubles")
+        Call<List<Inmueble>> getInmubles(@Header("Authorization") String token);
+
+
 
 
     }
