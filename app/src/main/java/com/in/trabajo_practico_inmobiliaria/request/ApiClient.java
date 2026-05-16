@@ -67,7 +67,7 @@ public class ApiClient {
 
 
         //llama inmueble
-        @GET("api/Inmubles")
+        @GET("api/Inmuebles")
         Call<List<Inmueble>> getInmubles(@Header("Authorization") String token);
 
 

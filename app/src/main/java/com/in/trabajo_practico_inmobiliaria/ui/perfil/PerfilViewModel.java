@@ -2,6 +2,7 @@ package com.in.trabajo_practico_inmobiliaria.ui.perfil;
 
 import android.app.Application;
 import android.util.Log;
+import android.util.Patterns;
 
 
 import androidx.annotation.NonNull;
@@ -144,6 +145,18 @@ public class PerfilViewModel extends AndroidViewModel {
             getMensajePerfilM().setValue("Por favor, complete todos los campos");
 
         } else {
+            // 2. Validar formato del Email
+            if (!Patterns.EMAIL_ADDRESS.matcher(propietarioEditado.getEmail()).matches()) {
+                getMensajePerfilM().setValue("Por favor, ingrese un email válido");
+                return;
+            }
+
+            // 3. Validar formato del Teléfono
+            if (!Patterns.PHONE.matcher(propietarioEditado.getTelefono()).matches()) {
+                getMensajePerfilM().setValue("Por favor, ingrese un número de teléfono válido");
+                return;
+            }
+
 
             String token = ApiClient.leerToken(getApplication());
             ApiClient.MiServicioInmobiliaria sv = ApiClient.getServicio();
