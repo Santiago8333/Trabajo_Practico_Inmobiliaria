@@ -59,11 +59,11 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.house)
                 .into(holder.foto);
-        /*
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onItemClick(inmuebleActual);
         });
-        */
+
 
     }
 
