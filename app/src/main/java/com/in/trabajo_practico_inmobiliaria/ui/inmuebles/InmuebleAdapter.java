@@ -24,11 +24,17 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
 
     private List<Inmueble> listaInmuebles;
     private LayoutInflater inflater;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Inmueble inmueble);
+    }
 
 
-    public InmuebleAdapter(List<Inmueble> inmuebles, LayoutInflater inflater) {
+    public InmuebleAdapter(List<Inmueble> inmuebles, LayoutInflater inflater, OnItemClickListener listener) {
         this.listaInmuebles = inmuebles;
         this.inflater = inflater;
+        this.listener = listener;
     }
 
     @NonNull
