@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.util.Log;
@@ -41,12 +42,12 @@ public class InmueblesFragment extends Fragment {
         mViewModel.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
+                InmuebleAdapter adapter = new InmuebleAdapter(inmuebles,getLayoutInflater());
+                /*
                 InmuebleAdapter adapter = new InmuebleAdapter(inmuebles,getLayoutInflater(),inmueble -> {
-                    //ir a inmueble detalle
                     Log.d("CLICK",inmueble.getDireccion());
-
-
                 });
+                 */
                 b.rcinmuebles.setAdapter(adapter);
 
                 GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
@@ -55,6 +56,15 @@ public class InmueblesFragment extends Fragment {
         });
 
         mViewModel.obtenerListaInmuebles();
+
+        //ir a la vista de agregar inmueble
+        b.btAgregarInmueble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view)
+                        .navigate(R.id.nav_agregar_Inmueble);
+            }
+        });
 
         return b.getRoot();
     }

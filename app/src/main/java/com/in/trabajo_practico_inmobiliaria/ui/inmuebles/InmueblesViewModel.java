@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.navigation.Navigation;
 
+import com.in.trabajo_practico_inmobiliaria.R;
 import com.in.trabajo_practico_inmobiliaria.modelo.Inmueble;
 import com.in.trabajo_practico_inmobiliaria.request.ApiClient;
 
@@ -77,6 +79,8 @@ public class InmueblesViewModel extends AndroidViewModel {
             }
         });
     }
+
+
 
 
 

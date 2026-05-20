@@ -1,5 +1,6 @@
 package com.in.trabajo_practico_inmobiliaria.ui.inmuebles;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,17 +26,17 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
 
     private List<Inmueble> listaInmuebles;
     private LayoutInflater inflater;
-    private OnItemClickListener listener;
+    //private OnItemClickListener listener;
 
     public interface OnItemClickListener {
         void onItemClick(Inmueble inmueble);
     }
 
 
-    public InmuebleAdapter(List<Inmueble> inmuebles, LayoutInflater inflater, OnItemClickListener listener) {
+    public InmuebleAdapter(List<Inmueble> inmuebles, LayoutInflater inflater) {
         this.listaInmuebles = inmuebles;
         this.inflater = inflater;
-        this.listener = listener;
+        //this.listener = listener;
     }
 
     @NonNull
@@ -61,7 +63,12 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
                 .into(holder.foto);
 
         holder.itemView.setOnClickListener(v -> {
-            if (listener != null) listener.onItemClick(inmuebleActual);
+            //if (listener != null) listener.onItemClick(inmuebleActual);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("inmueble",inmuebleActual);
+            Navigation.findNavController(v)
+                    .navigate(R.id.nav_detalle_inmueble,bundle);
+
         });
 
 

@@ -62,6 +62,14 @@ public class ApiClient {
         Call<String> resetearContrasenia(@Header("Authorization") String token,
                                       @Field("email") String email);
 
+        //actualizar inmueble
+        // /api/Inmuebles/actualizar
+        @PUT("api/Inmuebles/actualizar")
+        Call<Inmueble> cambiarDisponibilidad(@Header("Authorization") String token,@Body Inmueble inmueble);
+
+
+
+
 
 
 

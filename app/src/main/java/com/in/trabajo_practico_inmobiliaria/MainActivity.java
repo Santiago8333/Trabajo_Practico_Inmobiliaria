@@ -3,6 +3,8 @@ package com.in.trabajo_practico_inmobiliaria;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -53,7 +55,19 @@ public class MainActivity extends AppCompatActivity {
         if (binding.navView != null) {
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
+        //agregar email y nombre
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView tvNombre = headerView.findViewById(R.id.tvNombreUsuario);
+        TextView tvEmail = headerView.findViewById(R.id.tvEmailUsuario);
+
+        String nombreLogueado = "Juan Pérez";
+        String emailLogueado = "juan.perez@email.com";
+
+        tvNombre.setText(nombreLogueado);
+        tvEmail.setText(emailLogueado);
 
     }
 

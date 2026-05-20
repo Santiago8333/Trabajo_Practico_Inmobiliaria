@@ -25,7 +25,15 @@
         android:id="@+id/nav_inmuebles"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.InmueblesFragment"
         android:label="@string/Inmuebles"
-        tools:layout="@layout/fragment_inmuebles" />
+        tools:layout="@layout/fragment_inmuebles" >
+        <action
+            android:id="@+id/action_nav_inmuebles_to_nav_detalle_inmueble"
+            app:destination="@id/nav_detalle_inmueble" />
+        <action
+            android:id="@+id/action_nav_inmuebles_to_nav_agregar_Inmueble"
+            app:destination="@id/nav_agregar_Inmueble" />
+
+    </fragment>
     <fragment
         android:id="@+id/nav_inquilinos"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.inquilinos.InquilinosFragment"
@@ -41,4 +49,23 @@
         android:name="com.in.trabajo_practico_inmobiliaria.ui.logout.LogoutFragment"
         android:label="@string/Logout"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/nav_detalle_inmueble"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.detalle_inmuebleFragment"
+        android:label="fragment_detalle_inmueble"
+        tools:layout="@layout/fragment_detalle_inmueble" >
+        <action
+            android:id="@+id/action_nav_detalle_inmueble_to_nav_inmuebles"
+            app:destination="@id/nav_inmuebles" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_agregar_Inmueble"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.Agregar_InmuebleFragment"
+        android:label="fragment_agregar__inmueble"
+        tools:layout="@layout/fragment_agregar__inmueble" >
+
+        <action
+            android:id="@+id/action_nav_agregar_Inmueble_to_nav_inmuebles"
+            app:destination="@id/nav_inmuebles" />
+    </fragment>
 </navigation>
