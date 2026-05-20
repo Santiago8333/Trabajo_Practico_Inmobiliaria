@@ -11,6 +11,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,15 +20,25 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.in.trabajo_practico_inmobiliaria.ViewModel.MainActivityViewModel;
 import com.in.trabajo_practico_inmobiliaria.databinding.ActivityMainBinding;
+import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
+import com.in.trabajo_practico_inmobiliaria.request.ApiClient;
+import com.in.trabajo_practico_inmobiliaria.ui.login.LoginViewModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
+    private MainActivityViewModel mv;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mv = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(MainActivityViewModel.class);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -55,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if (binding.navView != null) {
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
-        //agregar email y nombre
+
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         View headerView = navigationView.getHeaderView(0);
@@ -63,11 +75,16 @@ public class MainActivity extends AppCompatActivity {
         TextView tvNombre = headerView.findViewById(R.id.tvNombreUsuario);
         TextView tvEmail = headerView.findViewById(R.id.tvEmailUsuario);
 
-        String nombreLogueado = "Juan Pérez";
-        String emailLogueado = "juan.perez@email.com";
+        mv.getPropietarioM().observe(this, new Observer<Propietario>() {
+            @Override
+            public void onChanged(Propietario propietario) {
+                tvNombre.setText(propietario.getNombre() + " " +propietario.getApellido());
+                tvEmail.setText(propietario.getEmail());
+            }
+        });
 
-        tvNombre.setText(nombreLogueado);
-        tvEmail.setText(emailLogueado);
+        mv.ObtenerPerfil();
+
 
     }
 
