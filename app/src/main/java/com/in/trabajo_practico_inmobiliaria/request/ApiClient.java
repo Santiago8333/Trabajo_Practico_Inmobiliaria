@@ -10,6 +10,8 @@ import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,8 +20,10 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public class ApiClient {
     public static final String BASE_URL = "https://capacitacion.alwaysdata.net";
@@ -66,6 +70,13 @@ public class ApiClient {
         // /api/Inmuebles/actualizar
         @PUT("api/Inmuebles/actualizar")
         Call<Inmueble> cambiarDisponibilidad(@Header("Authorization") String token,@Body Inmueble inmueble);
+
+        //Cargar inmueble
+        @Multipart
+        @POST("api/Inmuebles/cargar")
+        Call<Inmueble> CargarInmueble(@Header("Authorization") String token,
+                                      @Part MultipartBody.Part imagen,
+                                      @Part("inmueble") RequestBody inmuebleBody);
 
 
 

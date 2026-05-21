@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Título -->
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
@@ -25,7 +24,6 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Dirección -->
         <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
@@ -43,17 +41,16 @@
             android:hint="Ej. Av. Universitaria 1024"
             android:inputType="textPostalAddress" />
 
-        <!-- Precio -->
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/lblValor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Precio"
+            android:text="Valor"
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/edPrecio"
+            android:id="@+id/edValor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -61,7 +58,23 @@
             android:hint="Ej. 150000"
             android:inputType="numberDecimal" />
 
-        <!-- Ambientes -->
+        <TextView
+            android:id="@+id/lblSuperficie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Superficie (m²)"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edSuperficie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp"
+            android:hint="Ej. 120"
+            android:inputType="number" />
+
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
@@ -79,7 +92,6 @@
             android:hint="Ej. 3"
             android:inputType="number" />
 
-        <!-- Uso -->
         <TextView
             android:id="@+id/lblUso"
             android:layout_width="match_parent"
@@ -97,7 +109,6 @@
             android:hint="Ej. Residencial / Comercial"
             android:inputType="text" />
 
-        <!-- Tipo -->
         <TextView
             android:id="@+id/lblTipo"
             android:layout_width="match_parent"
@@ -114,6 +125,7 @@
             android:hint="Ej. Departamento / Casa"
             android:minHeight="48dp"
             android:inputType="text" />
+
         <ImageView
             android:id="@+id/ivImagenInmueble"
             android:layout_width="match_parent"
@@ -131,14 +143,12 @@
             android:layout_marginBottom="24dp"
             android:text="Seleccionar Imagen" />
 
-
-        <!-- Botón para Guardar / Actualizar -->
         <Button
-            android:id="@+id/btnActualizar"
+            android:id="@+id/btGuardar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            android:text="Guardar / Actualizar"
+            android:text="Guardar"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="8dp" />
