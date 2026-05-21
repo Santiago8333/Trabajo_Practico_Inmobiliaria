@@ -36,11 +36,12 @@ public class detalle_inmuebleFragment extends Fragment {
         b = FragmentDetalleInmuebleBinding.inflate(getLayoutInflater());
         mViewModel = new ViewModelProvider(this).get(DetalleInmuebleViewModel.class);
 
+
         mViewModel.getInmuebleM().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
             public void onChanged(Inmueble inmueble) {
                 Glide.with(getContext())
-                        .load(ApiClient.BASE_URL + inmueble.getImagen())
+                        .load(ApiClient.BASE_URL + "/" + inmueble.getImagen())
                         .placeholder(R.drawable.loading)
                         .error(R.drawable.house)
                         .into(b.tvImagen);

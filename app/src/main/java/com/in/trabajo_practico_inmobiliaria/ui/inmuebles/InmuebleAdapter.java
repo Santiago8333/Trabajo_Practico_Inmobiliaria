@@ -1,6 +1,7 @@
 package com.in.trabajo_practico_inmobiliaria.ui.inmuebles;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,9 +56,27 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
         NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
         String valorFormateado = nf.format(inmuebleActual.getValor());
         holder.precio.setText("$ " + valorFormateado);
+        String rutaImagen = inmuebleActual.getImagen();
+        String urlFinal = "";
+
+        if (rutaImagen != null && !rutaImagen.isEmpty()) {
+
+            rutaImagen = rutaImagen.replace("\\", "/");
+
+            // Asegurar que haya una sola barra "/" entre la BASE_URL y la ruta
+            if (rutaImagen.startsWith("/")) {
+                urlFinal = ApiClient.BASE_URL + rutaImagen;
+            } else {
+                urlFinal = ApiClient.BASE_URL + "/" + rutaImagen;
+            }
+        }
+
+        // Imprimir en consola para que veas qué URL se armó finalmente
+        Log.d("GLIDE_URL", "Cargando imagen: " + urlFinal);
+
 
         Glide.with(holder.itemView.getContext())
-                .load(ApiClient.BASE_URL + inmuebleActual.getImagen())
+                .load(urlFinal)
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.house)
                 .into(holder.foto);
