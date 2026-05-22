@@ -67,12 +67,36 @@ public class Agregar_InmuebleFragment extends Fragment {
                         b.edUso.getText().toString(),
                         b.edTipo.getText().toString(),
                         b.edAmbientes.getText().toString(),
-                        b.edSuperficie.toString(),
-                        b.edValor.toString()
+                        b.edSuperficie.getText().toString(),
+                        b.edValor.getText().toString()
                 );
             }
         });
+        //observar mensaje
+        mViewModel.getMensajeM().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                b.tvMensaje.setText(s);
+            }
+        });
 
+        //limpiar si se guardo el inmueble
+        mViewModel.getLimpiarFormularioM().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean limpiar) {
+                    b.edDireccion.setText("");
+                    b.edUso.setText("");
+                    b.edTipo.setText("");
+                    b.edAmbientes.setText("");
+                    b.edSuperficie.setText("");
+                    b.edValor.setText("");
+
+                    b.ivImagenInmueble.setImageResource(0);
+                    b.ivImagenInmueble.setBackgroundColor(android.graphics.Color.parseColor("#E0E0E0"));
+
+                     //b.tvMensaje.setText("");
+            }
+        });
         return b.getRoot();
     }
 

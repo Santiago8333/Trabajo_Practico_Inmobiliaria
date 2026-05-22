@@ -37,6 +37,7 @@ import retrofit2.Response;
 public class AgregarInmuebleViewModel extends AndroidViewModel {
     private MutableLiveData<Uri> imagenSeleccionadaM = new MutableLiveData<>();
     private MutableLiveData<String> mensajeM = new MutableLiveData<>();
+    private MutableLiveData<Boolean> limpiarFormularioM = new MutableLiveData<>();
 
 
     public AgregarInmuebleViewModel(@NonNull Application application) {
@@ -47,6 +48,13 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
         return imagenSeleccionadaM;
     }
 
+    public MutableLiveData<String> getMensajeM() {
+        return mensajeM;
+    }
+
+    public MutableLiveData<Boolean> getLimpiarFormularioM() {
+        return limpiarFormularioM;
+    }
 
     public void recibirFoto(ActivityResult result) {
         if (result.getResultCode() == RESULT_OK) {
@@ -61,8 +69,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
 
         try{
             if(direccion.isEmpty()|| uso.isEmpty() || tipo.isEmpty() || ambientes.isEmpty() || superficie.isEmpty() || valor.isEmpty()) {
-                Toast.makeText(getApplication(), "Datos faltantes", Toast.LENGTH_SHORT).show();
-
+                mensajeM.setValue("Datos Faltantes");
             }else{
                 Inmueble i = new Inmueble();
                 i.setDireccion(direccion);
@@ -75,6 +82,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
                 byte[] imagen = transformarImagen();
                 if(imagen.length==0){
                     Toast.makeText(getApplication(), "Debe ingresar imagen", Toast.LENGTH_LONG).show();
+                    mensajeM.setValue("Debe ingresar imagen");
                     return;
                 }
 
@@ -97,10 +105,12 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
                     @Override
                     public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                         if(response.isSuccessful()){
-                            Toast.makeText(getApplication(), "Inmueble guardado correctamente", Toast.LENGTH_SHORT).show();
-                            Log.d("ErrorInmueble","cargado");
+
+                            mensajeM.setValue("Inmueble guardado correctamente");
+                            limpiarFormularioM.setValue(true);
                         }else{
                             Toast.makeText(getApplication(), "Error al cargar inmueble", Toast.LENGTH_SHORT).show();
+                            mensajeM.setValue("Error al cargar inmueble");
                             try{
 
                                 Log.d("ErrorInmueble", "codigo: " + response.code());
@@ -109,6 +119,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
 
                             }catch (Exception e){
                                 Log.d("ErrorInmueble",e.toString());
+                                mensajeM.setValue(e.toString());
                             }
                         }
 
@@ -117,6 +128,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
                     @Override
                     public void onFailure(Call<Inmueble> call, Throwable t) {
                         Log.d("ErrorInmueble",t.getMessage());
+                        mensajeM.setValue("ErrorInmueble "+t.getMessage());
                     }
                 });
 
@@ -127,14 +139,8 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
 
 
         }catch (NumberFormatException e){
-
+            Log.d("ErrorInmueble",e.getMessage());
         }
-
-
-
-
-
-
 
 
 
@@ -151,8 +157,11 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
             return byteArrayOutputStream.toByteArray();
         } catch (FileNotFoundException ex) {
             Toast.makeText(getApplication(), "Debe ingresar una foto", Toast.LENGTH_LONG).show();
+            mensajeM.setValue("Debe ingresar una foto");
             return new byte[]{};
         }
 
     }
+
+
 }
