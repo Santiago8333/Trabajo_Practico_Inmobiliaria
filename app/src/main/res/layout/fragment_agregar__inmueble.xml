@@ -100,14 +100,12 @@
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/edUso"
+        <Spinner
+            android:id="@+id/spUso"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="16dp"
-            android:minHeight="48dp"
-            android:hint="Ej. Residencial / Comercial"
-            android:inputType="text" />
+            android:entries="@array/lista_usos" />
 
         <TextView
             android:id="@+id/lblTipo"
@@ -117,14 +115,12 @@
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/edTipo"
+        <Spinner
+            android:id="@+id/spTipo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginBottom="32dp"
-            android:hint="Ej. Departamento / Casa"
-            android:minHeight="48dp"
-            android:inputType="text" />
+            android:entries="@array/lista_tipos" />
 
         <ImageView
             android:id="@+id/ivImagenInmueble"

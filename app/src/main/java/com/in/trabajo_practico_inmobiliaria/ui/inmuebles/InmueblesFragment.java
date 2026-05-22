@@ -50,7 +50,7 @@ public class InmueblesFragment extends Fragment {
                  */
                 b.rcinmuebles.setAdapter(adapter);
 
-                GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+                GridLayoutManager glm = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
                 b.rcinmuebles.setLayoutManager(glm);
             }
         });

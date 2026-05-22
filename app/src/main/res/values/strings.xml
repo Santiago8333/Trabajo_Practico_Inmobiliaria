@@ -29,4 +29,19 @@
     <string name="Inquilinos">Inquilinos</string>
     <string name="Contratos">Contratos</string>
     <string name="Logout">Logout\n</string>
+    <!-- Opciones para el Spinner de Uso -->
+    <string-array name="lista_usos">
+        <item>Residencial</item>
+        <item>Comercial</item>
+        <item>Industrial</item>
+    </string-array>
+
+    <!-- Opciones para el Spinner de Tipo -->
+    <string-array name="lista_tipos">
+        <item>Casa</item>
+        <item>Departamento</item>
+        <item>Local</item>
+        <item>Terreno</item>
+        <item>Oficina</item>
+    </string-array>
 </resources>

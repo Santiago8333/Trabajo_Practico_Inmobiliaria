@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
 import com.in.trabajo_practico_inmobiliaria.R;
@@ -62,14 +63,16 @@ public class Agregar_InmuebleFragment extends Fragment {
         b.btGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 mViewModel.cargarInmueble(
                         b.edDireccion.getText().toString(),
-                        b.edUso.getText().toString(),
-                        b.edTipo.getText().toString(),
+                        b.spUso.getSelectedItem().toString(),
+                        b.spTipo.getSelectedItem().toString(),
                         b.edAmbientes.getText().toString(),
                         b.edSuperficie.getText().toString(),
                         b.edValor.getText().toString()
                 );
+
             }
         });
         //observar mensaje
@@ -85,8 +88,8 @@ public class Agregar_InmuebleFragment extends Fragment {
             @Override
             public void onChanged(Boolean limpiar) {
                     b.edDireccion.setText("");
-                    b.edUso.setText("");
-                    b.edTipo.setText("");
+                    b.spUso.setSelection(0);
+                    b.spTipo.setSelection(0);
                     b.edAmbientes.setText("");
                     b.edSuperficie.setText("");
                     b.edValor.setText("");
