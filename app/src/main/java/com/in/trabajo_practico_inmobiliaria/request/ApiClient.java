@@ -79,6 +79,11 @@ public class ApiClient {
                                       @Part("inmueble") RequestBody inmuebleBody);
 
 
+        //Devuelve los inmuebles que se encuentran actualmente alquilados.
+        @GET("api/Inmuebles/GetContratoVigente")
+        Call<List<Inmueble>> getInmublesAlquilados(@Header("Authorization") String token);
+
+
 
 
 

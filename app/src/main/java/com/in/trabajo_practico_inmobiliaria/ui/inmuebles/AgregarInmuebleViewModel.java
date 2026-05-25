@@ -140,6 +140,7 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
 
         }catch (NumberFormatException e){
             Log.d("ErrorInmueble",e.getMessage());
+            mensajeM.setValue("Error: Ambientes, Superficie y Valor deben ser números válidos.");
         }
 
 
@@ -150,17 +151,27 @@ public class AgregarInmuebleViewModel extends AndroidViewModel {
     private byte[] transformarImagen() {
         try {
             Uri uri = imagenSeleccionadaM.getValue();
+
+
+            if (uri == null) {
+                mensajeM.setValue("Debe ingresar una foto");
+                return new byte[]{};
+            }
+
             InputStream inputStream = getApplication().getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             return byteArrayOutputStream.toByteArray();
+
         } catch (FileNotFoundException ex) {
-            Toast.makeText(getApplication(), "Debe ingresar una foto", Toast.LENGTH_LONG).show();
-            mensajeM.setValue("Debe ingresar una foto");
+            mensajeM.setValue("Archivo de imagen no encontrado");
+            return new byte[]{};
+        } catch (Exception e) {
+            // Captura el NullPointerException u otros errores
+            mensajeM.setValue("Error al procesar la imagen");
             return new byte[]{};
         }
-
     }
 
 
