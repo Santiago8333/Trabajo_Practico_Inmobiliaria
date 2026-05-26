@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,12 +74,14 @@ public class InquilinosAdapter extends RecyclerView.Adapter<InquilinosAdapter.Vi
                 .error(R.drawable.house)
                 .into(holder.foto);
 
-        holder.itemView.setOnClickListener(v -> {
-            //Bundle bundle = new Bundle();
-            //bundle.putSerializable("inmueble",inmuebleActual);
-
+        holder.btnVer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Bundle bundle = new Bundle();
+                //bundle.putSerializable("inmuebleAlquilado", inmuebleActual);
+                Log.d("btnver","Click");
+            }
         });
-
 
     }
 
@@ -91,12 +94,14 @@ public class InquilinosAdapter extends RecyclerView.Adapter<InquilinosAdapter.Vi
     public static class ViewHolderInquilinos extends RecyclerView.ViewHolder {
         TextView direccion,valor;
         ImageView foto;
+        Button btnVer;
 
         public ViewHolderInquilinos(@NonNull View itemView) {
             super(itemView);
             direccion = itemView.findViewById(R.id.tvDireccion);
             foto = itemView.findViewById(R.id.tvImagen);
             valor = itemView.findViewById(R.id.tvPrecio);
+            btnVer = itemView.findViewById(R.id.btnVer);
         }
     }
 

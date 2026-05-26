@@ -44,6 +44,7 @@ public class InmueblesViewModel extends AndroidViewModel {
         String token = ApiClient.leerToken(getApplication());
         ApiClient.MiServicioInmobiliaria sv = ApiClient.getServicio();
         Call<List<Inmueble>> call = sv.getInmubles(token);
+
         call.enqueue(new Callback<List<Inmueble>>() {
             @Override
             public void onResponse(Call<List<Inmueble>> call, Response<List<Inmueble>> response) {
@@ -74,7 +75,6 @@ public class InmueblesViewModel extends AndroidViewModel {
             @Override
             public void onFailure(Call<List<Inmueble>> call, Throwable t) {
                 Log.d("ErrorInmueble",t.getMessage());
-
 
             }
         });

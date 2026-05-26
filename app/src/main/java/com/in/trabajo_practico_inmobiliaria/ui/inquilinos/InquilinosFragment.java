@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,12 +40,14 @@ public class InquilinosFragment extends Fragment {
         mViewModel.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
+
                 InquilinosAdapter adapter = new InquilinosAdapter(inmuebles,getLayoutInflater());
 
                 b.rcinquilinos.setAdapter(adapter);
 
                 GridLayoutManager glm = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
                 b.rcinquilinos.setLayoutManager(glm);
+
 
             }
 
