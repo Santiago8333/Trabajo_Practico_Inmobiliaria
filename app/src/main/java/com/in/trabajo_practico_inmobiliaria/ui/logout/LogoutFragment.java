@@ -31,9 +31,6 @@ public class LogoutFragment extends Fragment {
         b = FragmentLogoutBinding.inflate(getLayoutInflater());
 
 
-
-
-
         return b.getRoot();
     }
 
@@ -47,7 +44,9 @@ public class LogoutFragment extends Fragment {
     }
 
     public void mostrarBotonesDialog(View view) {
-        Dialog miDialogo = new Dialog();
-        miDialogo.mostrarDialog(getActivity());
+        Dialog.mostrarDialog(getActivity());
     }
+
+
+
 }

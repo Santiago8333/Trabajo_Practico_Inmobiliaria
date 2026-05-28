@@ -12,7 +12,7 @@ public class Dialog {
 
 
 
-    public void mostrarDialog(Activity activity){
+    public static void mostrarDialog(Activity activity){
 
         new AlertDialog.Builder(activity)
                 .setTitle("Bye Bye")
@@ -34,7 +34,18 @@ public class Dialog {
     }
 
 
+    public static void mostrarDialogLista(Activity activity){
+        CharSequence colores[]={"azul","rojo","verde"};
+        new AlertDialog.Builder(activity)
+                .setTitle("Elija un color")
+                .setItems(colores, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(activity,colores[i],Toast.LENGTH_LONG).show();
+                    }
+                }).show();
 
+    }
 
 
 }

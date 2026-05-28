@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.in.trabajo_practico_inmobiliaria.modelo.Contrato;
 import com.in.trabajo_practico_inmobiliaria.modelo.Inmueble;
 import com.in.trabajo_practico_inmobiliaria.modelo.Propietario;
 
@@ -84,8 +85,8 @@ public class ApiClient {
         Call<List<Inmueble>> getInmublesAlquilados(@Header("Authorization") String token);
 
         // api/contratos/inmueble/{id}
-        //@GET("api/contratos/inmueble/{id}")
-        //Call<>
+        @GET("api/contratos/inmueble/{id}")
+        Call<Contrato> getContratos(@Header("Authorization") String token);
 
 
 
