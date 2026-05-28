@@ -8,7 +8,7 @@
     tools:context=".ui.inquilinos.InquilinosDetalleFragment">
 
     <ImageView
-        android:id="@+id/ivImagen"
+        android:id="@+id/ivImagenInquilino"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="16dp"
@@ -19,7 +19,7 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvDireccion"
+        android:id="@+id/tvNombreInquilino"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -29,11 +29,11 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivImagen"
-        tools:text="Av. Siempreviva 742" />
+        app:layout_constraintTop_toBottomOf="@+id/ivImagenInquilino"
+        tools:text="Pepe Funes" />
 
     <TextView
-        android:id="@+id/tvValor"
+        android:id="@+id/tvDniInquilino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -42,8 +42,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDireccion"
-        tools:text="$ 150.000" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreInquilino"
+        tools:text="DNI: 12345678" />
 
     <View
         android:id="@+id/divider"
@@ -53,50 +53,28 @@
         android:background="#E0E0E0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvValor" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDniInquilino" />
 
     <TextView
-        android:id="@+id/tvUso"
+        android:id="@+id/tvTelefonoInquilino"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
-        tools:text="Uso: Vivienda" />
+        tools:text="Tel: 987653343" />
 
     <TextView
-        android:id="@+id/tvTipo"
+        android:id="@+id/tvEmailInquilino"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUso"
-        tools:text="Tipo: Departamento" />
-
-    <TextView
-        android:id="@+id/tvAmbiente"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipo"
-        tools:text="Ambientes: 3" />
-
-    <TextView
-        android:id="@+id/tvSuperficie"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAmbiente"
-        tools:text="Superficie: 65 m²" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefonoInquilino"
+        tools:text="Email: ale@gmail.com" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
