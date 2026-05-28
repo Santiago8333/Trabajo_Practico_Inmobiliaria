@@ -83,6 +83,9 @@ public class ApiClient {
         @GET("api/Inmuebles/GetContratoVigente")
         Call<List<Inmueble>> getInmublesAlquilados(@Header("Authorization") String token);
 
+        // api/contratos/inmueble/{id}
+        //@GET("api/contratos/inmueble/{id}")
+        //Call<>
 
 
 

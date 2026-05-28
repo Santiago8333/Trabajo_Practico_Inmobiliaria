@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.in.trabajo_practico_inmobiliaria.R;
+import com.in.trabajo_practico_inmobiliaria.databinding.FragmentLogoutBinding;
 
 public class LogoutFragment extends Fragment {
+    private FragmentLogoutBinding b;
 
     private LogoutViewModel mViewModel;
 
@@ -25,8 +27,17 @@ public class LogoutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_logout, container, false);
+
+        b = FragmentLogoutBinding.inflate(getLayoutInflater());
+
+
+
+
+
+        return b.getRoot();
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -35,4 +46,8 @@ public class LogoutFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    public void mostrarBotonesDialog(View view) {
+        Dialog miDialogo = new Dialog();
+        miDialogo.mostrarDialog(getActivity());
+    }
 }
