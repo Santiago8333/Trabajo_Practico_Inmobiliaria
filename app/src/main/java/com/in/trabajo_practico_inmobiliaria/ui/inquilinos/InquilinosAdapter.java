@@ -77,8 +77,10 @@ public class InquilinosAdapter extends RecyclerView.Adapter<InquilinosAdapter.Vi
         holder.btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Bundle bundle = new Bundle();
-                //bundle.putSerializable("inmuebleAlquilado", inmuebleActual);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("inmuebleAlquilado", inmuebleActual);
+                Navigation.findNavController(v)
+                        .navigate(R.id.nav_inquilinosDetalle,bundle);
                 Log.d("btnver","Click");
             }
         });
