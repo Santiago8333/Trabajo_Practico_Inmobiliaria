@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/nav_inquilinosDetalle"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.inquilinos.InquilinosDetalleFragment"
-        android:label="fragment_inquilinos_detalle"
+        android:label="Inquilino Detalle"
         tools:layout="@layout/fragment_inquilinos_detalle" >
         <action
             android:id="@+id/action_nav_inquilinosDetalle_to_nav_inquilinos"

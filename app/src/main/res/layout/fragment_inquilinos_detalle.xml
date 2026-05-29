@@ -7,30 +7,33 @@
     android:padding="24dp"
     tools:context=".ui.inquilinos.InquilinosDetalleFragment">
 
-    <ImageView
-        android:id="@+id/ivImagenInquilino"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvNombreInquilino"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivImagenInquilino"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Pepe Funes" />
+
+    <TextView
+        android:id="@+id/tvApellidoInquilino"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreInquilino"
+        tools:text="Apellido" />
+
 
     <TextView
         android:id="@+id/tvDniInquilino"
@@ -42,7 +45,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreInquilino"
+        app:layout_constraintTop_toBottomOf="@+id/tvApellidoInquilino"
         tools:text="DNI: 12345678" />
 
     <View

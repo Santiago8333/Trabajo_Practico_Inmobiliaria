@@ -18,6 +18,7 @@ import com.in.trabajo_practico_inmobiliaria.R;
 import com.in.trabajo_practico_inmobiliaria.databinding.FragmentInquilinosBinding;
 import com.in.trabajo_practico_inmobiliaria.databinding.FragmentInquilinosDetalleBinding;
 import com.in.trabajo_practico_inmobiliaria.modelo.Inmueble;
+import com.in.trabajo_practico_inmobiliaria.modelo.Inquilino;
 import com.in.trabajo_practico_inmobiliaria.request.ApiClient;
 
 public class InquilinosDetalleFragment extends Fragment {
@@ -35,20 +36,22 @@ public class InquilinosDetalleFragment extends Fragment {
         b = FragmentInquilinosDetalleBinding.inflate(getLayoutInflater());
 
 
-        mViewModel.getInmuebleM().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
+        mViewModel.getInquilinoM().observe(getViewLifecycleOwner(), new Observer<Inquilino>() {
             @Override
-            public void onChanged(Inmueble inmueble) {
-                Glide.with(getContext())
-                        .load(ApiClient.BASE_URL + "/" + inmueble.getImagen())
-                        .placeholder(R.drawable.loading)
-                        .error(R.drawable.house)
-                        .into(b.ivImagen);
+            public void onChanged(Inquilino inquilino) {
+                b.tvNombreInquilino.setText("Nombre: "+inquilino.getNombre());
+                b.tvApellidoInquilino.setText("Apellido: "+inquilino.getApellido());
+                b.tvDniInquilino.setText("Dni: "+inquilino.getDni());
+                b.tvEmailInquilino.setText("Email: "+inquilino.getEmail());
+                b.tvTelefonoInquilino.setText("Telefono: "+inquilino.getTelefono());
 
 
             }
         });
 
-        mViewModel.cargarDetalleinmueble(getArguments());
+
+
+        mViewModel.cargarDetalleinquilino(getArguments());
 
         return b.getRoot();
     }
