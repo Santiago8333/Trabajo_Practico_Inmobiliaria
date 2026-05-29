@@ -45,7 +45,7 @@ public class ContratosAdapter extends RecyclerView.Adapter<ContratosAdapter.View
     public void onBindViewHolder(@NonNull ViewHolderContratos holder, int position) {
         Inmueble inmuebleActual = listaInmuebles.get(position);
         holder.direccion.setText(inmuebleActual.getDireccion());
-
+        Log.d("ErrorContratos: ","5");
         NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
         String valorFormateado = nf.format(inmuebleActual.getValor());
 
@@ -75,13 +75,20 @@ public class ContratosAdapter extends RecyclerView.Adapter<ContratosAdapter.View
                 .error(R.drawable.house)
                 .into(holder.foto);
 
+
         holder.btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("inmuebleAlquilado", inmuebleActual);
 
-                Log.d("btnverContrato","Click");
+                Navigation.findNavController(v)
+                        .navigate(R.id.nav_contratoDetalle,bundle);
+               // Log.d("btnverContrato","Click");
             }
         });
+
+
 
 
 

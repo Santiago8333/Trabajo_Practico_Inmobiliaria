@@ -81,4 +81,9 @@
             android:id="@+id/action_nav_inquilinosDetalle_to_nav_inquilinos"
             app:destination="@id/nav_inquilinos" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_contratoDetalle"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.ContratoDetalleFragment"
+        android:label="fragment_contrato_detalle"
+        tools:layout="@layout/fragment_contrato_detalle" />
 </navigation>
