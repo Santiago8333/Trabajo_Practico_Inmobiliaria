@@ -61,7 +61,7 @@ public class PagosAdaper extends RecyclerView.Adapter<PagosAdaper.ViewHolderPago
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listaPagos != null ? listaPagos.size() : 0;
     }
 
     public static class ViewHolderPagos extends RecyclerView.ViewHolder{
