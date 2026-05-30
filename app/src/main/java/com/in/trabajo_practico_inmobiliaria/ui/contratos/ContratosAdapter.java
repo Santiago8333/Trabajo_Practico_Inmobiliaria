@@ -45,7 +45,7 @@ public class ContratosAdapter extends RecyclerView.Adapter<ContratosAdapter.View
     public void onBindViewHolder(@NonNull ViewHolderContratos holder, int position) {
         Inmueble inmuebleActual = listaInmuebles.get(position);
         holder.direccion.setText(inmuebleActual.getDireccion());
-        Log.d("ErrorContratos: ","5");
+
         NumberFormat nf = NumberFormat.getInstance(new Locale("es", "AR"));
         String valorFormateado = nf.format(inmuebleActual.getValor());
 

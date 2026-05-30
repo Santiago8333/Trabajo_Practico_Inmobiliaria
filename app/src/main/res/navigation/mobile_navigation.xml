@@ -86,4 +86,9 @@
         android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.ContratoDetalleFragment"
         android:label="fragment_contrato_detalle"
         tools:layout="@layout/fragment_contrato_detalle" />
+    <fragment
+        android:id="@+id/nav_pagos"
+        android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.PagosFragment"
+        android:label="fragment_pagos"
+        tools:layout="@layout/fragment_pagos" />
 </navigation>

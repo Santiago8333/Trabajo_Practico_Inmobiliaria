@@ -53,11 +53,11 @@ public class ContratoDetalleFragment extends Fragment {
             public void onClick(View v) {
                 Integer idContratoActual = mViewModel.getContratoidM().getValue();
 
-
                     Bundle bundle = new Bundle();
                     bundle.putInt("idContrato", idContratoActual);
+                    Navigation.findNavController(v).navigate(R.id.nav_pagos, bundle);
 
-                   // Navigation.findNavController(v).navigate(R.id.nav_pagos, bundle);
+
             }
         });
 
