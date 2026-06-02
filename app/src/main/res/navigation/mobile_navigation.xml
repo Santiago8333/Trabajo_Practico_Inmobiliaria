@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/nav_contratos"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.ContratosFragment"
-        android:label="fragment_contratos"
+        android:label="Contratos"
         tools:layout="@layout/fragment_contratos" >
         <action
             android:id="@+id/action_nav_contratos_to_nav_contratoDetalle"
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/nav_detalle_inmueble"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.detalle_inmuebleFragment"
-        android:label="fragment_detalle_inmueble"
+        android:label="Detalle inmueble"
         tools:layout="@layout/fragment_detalle_inmueble" >
         <action
             android:id="@+id/action_nav_detalle_inmueble_to_nav_inmuebles"
@@ -69,7 +69,7 @@
     <fragment
         android:id="@+id/nav_agregar_Inmueble"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.inmuebles.Agregar_InmuebleFragment"
-        android:label="fragment_agregar__inmueble"
+        android:label="Agregar Inmueble"
         tools:layout="@layout/fragment_agregar__inmueble" >
 
         <action
@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/nav_contratoDetalle"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.ContratoDetalleFragment"
-        android:label="fragment_contrato_detalle"
+        android:label="Contrato Detalle"
         tools:layout="@layout/fragment_contrato_detalle" >
         <action
             android:id="@+id/action_nav_contratoDetalle_to_nav_contratos"
@@ -100,7 +100,7 @@
     <fragment
         android:id="@+id/nav_pagos"
         android:name="com.in.trabajo_practico_inmobiliaria.ui.contratos.PagosFragment"
-        android:label="fragment_pagos"
+        android:label="Pagos"
         tools:layout="@layout/fragment_pagos" >
         <action
             android:id="@+id/action_nav_pagos_to_nav_contratoDetalle"
